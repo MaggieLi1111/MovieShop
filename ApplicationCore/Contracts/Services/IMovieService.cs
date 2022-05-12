@@ -9,7 +9,7 @@ namespace ApplicationCore.Contracts.Services
 {
     public interface IMovieService
     {
-        // home/index action method will call  
+        // home/index action method will call this method
         List<MovieCardModel> GetTop30GrossingMovies();
          
     }
