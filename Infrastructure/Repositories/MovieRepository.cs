@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories
     {
         public List<Movie> GetTop30GrossingMovies()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
