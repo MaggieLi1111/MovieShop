@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc;
 using MovieShop.Models;
 using System.Diagnostics;
 
@@ -17,7 +18,11 @@ namespace MovieShop.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var movieService = new MovieService();
+            var movieCards = movieService.GetTop30GrossingMovies();
+
+            // passing the data from controller action method to Views
+            return View(movieCards);
         }
 
         [HttpGet]

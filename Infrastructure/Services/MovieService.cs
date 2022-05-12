@@ -16,7 +16,7 @@ namespace Infrastructure.Services
             // call the movie repository class
             // get the entity class data and map them into model class data
             var movieRepo = new MovieRepository();
-            var movies = movieRepo.GetTop30GrossingMovies();
+            var movies = movieRepo.GetTop30GrossingMovies();  
 
             var movieCards = new List<MovieCardModel>();
 
