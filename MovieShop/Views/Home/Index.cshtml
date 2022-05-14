@@ -10,7 +10,9 @@
             {
                 <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                     <div class="card mb-4">
-                        <img src="@movieCard.PosterUrl" alt="@movieCard.Title">
+                        <a asp-action="Details" asp-controller="Movies" asp-route-id="@movieCard.Id">
+                            <img class="img-fluid" src="@movieCard.PosterUrl" alt="@movieCard.Title">
+                        </a>
                     </div>
                 </div>
             }
