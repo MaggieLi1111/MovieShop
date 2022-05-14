@@ -13,8 +13,11 @@ namespace Infrastructure.Services
     {
         public List<MovieCardModel> GetTop30GrossingMovies()
         {
-            // call the movie repository class
-            // get the entity class data and map them into model class data
+            // Service: only related to the implementation (Model View)
+            // ApplicationCore -> Contracts -> Services -> IMovieService(interface, no body) -> Infrastructure.Services -> MovieService(model, implementation)
+            // first: call MovieRepository class
+            // second: get the entity class data and map them into model class data
+
             var movieRepo = new MovieRepository();
             var movies = movieRepo.GetTop30GrossingMovies();  
 
@@ -29,9 +32,8 @@ namespace Infrastructure.Services
                     Title = movie.Title,
                 });
             }
-
             return movieCards;
-          
+           
         }
     }
 }
