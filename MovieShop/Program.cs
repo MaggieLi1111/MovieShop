@@ -1,7 +1,13 @@
+using ApplicationCore.Contracts.Services;
+using Infrastructure.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// .NET Core built-in dependency injection, first class citizen in .NET Core
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 var app = builder.Build();
 
