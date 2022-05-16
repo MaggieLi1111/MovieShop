@@ -28,6 +28,7 @@ namespace Infrastructure.Data
         {
             // you can specify the rules for Entity
             modelBuilder.Entity<Genre>(ConfigureGenre);
+            modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
         }
 
         private void ConfigureGenre(EntityTypeBuilder<Genre> builder)
@@ -37,5 +38,21 @@ namespace Infrastructure.Data
             builder.HasKey(g => g.Id);
             builder.Property(g => g.Name).HasMaxLength(64).IsRequired();
         }
+
+        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
+        {
+            builder.ToTable("MovieGenre");
+            builder.HasKey(mg => new
+            {
+                mg.MovieId,
+                mg.GenreId
+            });
+        }
+
+        public DbSet<Trailer> Trailers { get; set; }
+
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+        
+
     }
 }

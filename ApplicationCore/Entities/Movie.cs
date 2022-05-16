@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationCore.Entities
 {
-    [Table("Movie")] // change table name from "Movie" to "Movies
+    [Table("Movie")] 
     public class Movie
     {
         
@@ -52,5 +52,10 @@ namespace ApplicationCore.Entities
         [MaxLength(2048)]
         public string? CreatedBy { get; set; }
 
+        // since one movie can have multiple trailers, so that movie itself needs to create a List to hold those trailers
+        public ICollection<Trailer> Trailers { get; set; }
+
+
+        public ICollection<MovieGenre> MoviesOfGenre { get; set; }
     }
 }
