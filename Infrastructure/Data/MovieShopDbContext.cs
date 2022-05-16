@@ -29,6 +29,9 @@ namespace Infrastructure.Data
             // you can specify the rules for Entity
             modelBuilder.Entity<Genre>(ConfigureGenre);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+            modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
+            modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<UserRole>(ConfigureUserRole);
         }
 
         private void ConfigureGenre(EntityTypeBuilder<Genre> builder)
@@ -49,10 +52,57 @@ namespace Infrastructure.Data
             });
         }
 
+        private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> builder)
+        {
+            builder.ToTable("MovieCrew");
+            builder.HasKey(mc => new
+            {
+                mc.MovieId,
+                mc.CrewId
+            });
+            builder.Property(mc => mc.Department).HasMaxLength(128).IsRequired();
+            builder.Property(mc => mc.Job).HasMaxLength(128).IsRequired();
+        }
+
+        private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
+        {
+            builder.ToTable("MovieCast");
+            builder.HasKey(moviecast => new
+            {
+                moviecast.MovieId,
+                moviecast.CastId,
+            });
+            builder.Property(moviecast => moviecast.Character).HasMaxLength(450).IsRequired();
+        }
+
+        private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRole");
+            builder.HasKey(userrole => new
+            {
+                userrole.UserId,
+                userrole.RoleId,
+            });
+        }
+
         public DbSet<Trailer> Trailers { get; set; }
 
-        public DbSet<MovieGenre> MovieGenres { get; set; }
-        
+        public DbSet<MovieGenre> MovieGenres { get; set; }      
 
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Crew> Crews { get; set; }
+
+        public DbSet<MovieCrew> MovieCrews { get; set; }
+        public DbSet<Cast> Casts { get; set; }
+        public DbSet<MovieCast> MovieCasts { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+
+        public DbSet<Favorite> Favorites  { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

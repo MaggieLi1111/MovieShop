@@ -54,8 +54,15 @@ namespace ApplicationCore.Entities
 
         // since one movie can have multiple trailers, so that movie itself needs to create a List to hold those trailers
         public ICollection<Trailer> Trailers { get; set; }
-
-
         public ICollection<MovieGenre> MoviesOfGenre { get; set; }
+
+        public ICollection<MovieCrew> MoviesOfCrew { get; set; }
+        public ICollection<MovieCast> MoviesOfCast { get; set; }
+
+        public ICollection<Purchase> Purchases { get; set; }
+
+        public ICollection<Favorite> Favorites { get; set; }
+        public ICollection<Review>  Reviews { get; set; }
+
     }
 }
