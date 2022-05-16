@@ -11,6 +11,7 @@ namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
+
         public List<MovieCardModel> GetTop30GrossingMovies()
         {
             // Service: only related to the implementation (Model View)
@@ -18,13 +19,14 @@ namespace Infrastructure.Services
             // first: call MovieRepository class
             // second: get the entity class data and map them into model class data
 
+
             var movieRepo = new MovieRepository();
             var movies = movieRepo.GetTop30GrossingMovies();  
 
             var movieCards = new List<MovieCardModel>();
 
             foreach (var movie in movies)
-            {
+            { 
                 movieCards.Add(new MovieCardModel
                 {
                     Id = movie.Id,

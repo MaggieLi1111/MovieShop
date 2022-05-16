@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
+using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,20 @@ namespace Infrastructure.Services
     {
         public List<MovieCardModel> GetTop30GrossingMovies()
         {
-            var movieRepo = new MovieRespository();
-            var movies = movieRepo.GetTop30GrossingMovies();
+            var movieRepo = new MovieRepository();
+            var movies = movieRepo.GetTop30GrossingMovies().Take(6);
+            var movieCards = new List<MovieCardModel>();
+
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardModel
+                {
+                    Id = movie.Id,
+                    PosterUrl = movie.PosterUrl,
+                    Title = movie.Title
+                });
+            }
+            return movieCards;
 
         }
     }
