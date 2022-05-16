@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationCore.Entities
 {
-    [Table("Movie")]
+    [Table("Movie")] // change table name from "Movie" to "Movies
     public class Movie
     {
         
@@ -37,6 +37,7 @@ namespace ApplicationCore.Entities
 
         [MaxLength(2048)]
         public string? BackdropUrl { get; set; }
+
         [MaxLength(128)]
         public string? OriginalLanguage { get; set; }
         public DateTime? ReleaseDate { get; set; }
