@@ -18,7 +18,7 @@ namespace ApplicationCore.Entities
         public string? Title { get; set; }
 
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? Overview { get; set; }
 
         [MaxLength(512)]
@@ -26,16 +26,16 @@ namespace ApplicationCore.Entities
         public decimal? Budget { get; set; }
         public decimal? Revenue { get; set; }
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? ImdbUrl { get; set; }
         
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? TmdbUrl { get; set; }
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? PosterUrl { get; set; }
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? BackdropUrl { get; set; }
 
         [MaxLength(128)]
@@ -46,10 +46,10 @@ namespace ApplicationCore.Entities
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? UpdatedBy { get; set; }
 
-        [MaxLength(2048)]
+        [MaxLength(2084)]
         public string? CreatedBy { get; set; }
 
         // since one movie can have multiple trailers, so that movie itself needs to create a List to hold those trailers
@@ -57,12 +57,11 @@ namespace ApplicationCore.Entities
         public ICollection<MovieGenre> MoviesOfGenre { get; set; }
 
         public ICollection<MovieCrew> MoviesOfCrew { get; set; }
-        public ICollection<MovieCast> MoviesOfCast { get; set; }
+        public ICollection<MovieCast> MoviesCasts { get; set; }
 
         public ICollection<Purchase> Purchases { get; set; }
 
         public ICollection<Favorite> Favorites { get; set; }
-        public ICollection<Review>  Reviews { get; set; }
-
+        public ICollection<Review> MoviesOfReview { get; set; }
     }
 }

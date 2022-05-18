@@ -1,9 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApplicationCore.Contracts.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MovieShopMVC.Controllers
 {
     public class MoviesController : Controller
+        
     {
+        private readonly IMovieService _movieService;
+        public MoviesController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
         public IActionResult Details(int id)
         {
             // go to Movies table and get the movie details by Id
@@ -15,6 +22,9 @@ namespace MovieShopMVC.Controllers
             // Services => business logic
             // Controller action methods => Services methods => Repository methods => SQL database 
             // get the model data from the services and send the data to the views
+            // CPU Bound operaiton(Calculations,image process) 
+            // I/O Bound operation(database calls, file, images, videos), speed depending on network speed, sql server, quer=> server memory
+            
             return View();
         }
     }

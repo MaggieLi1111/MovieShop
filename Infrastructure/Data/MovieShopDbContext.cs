@@ -32,6 +32,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
             modelBuilder.Entity<UserRole>(ConfigureUserRole);
+            modelBuilder.Entity<Review>(ConfigureReview);
         }
 
         private void ConfigureGenre(EntityTypeBuilder<Genre> builder)
@@ -62,6 +63,7 @@ namespace Infrastructure.Data
             });
             builder.Property(mc => mc.Department).HasMaxLength(128).IsRequired();
             builder.Property(mc => mc.Job).HasMaxLength(128).IsRequired();
+          
         }
 
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
@@ -84,7 +86,18 @@ namespace Infrastructure.Data
                 userrole.RoleId,
             });
         }
-
+        private void ConfigureReview(EntityTypeBuilder<Review> builder)
+        {
+            builder.ToTable("Review");
+            builder.HasKey(review => new 
+            { 
+            review.MovieId,
+            review.UserId,
+            });
+            builder.Property(review => review.Rating).HasColumnType("decimal(3,2)").IsRequired();
+            builder.Property(review => review.ReviewText);
+            
+        }
         public DbSet<Trailer> Trailers { get; set; }
 
         public DbSet<MovieGenre> MovieGenres { get; set; }      
