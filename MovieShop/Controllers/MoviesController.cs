@@ -27,5 +27,11 @@ namespace MovieShopMVC.Controllers
             var movieDetails = await _movieService.GetMovieDetails(id);
             return View(movieDetails);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Genres(int id, int pageSize= 30, int pageNumber = 1)
+        {
+
+        }
     }
 }
