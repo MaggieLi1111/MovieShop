@@ -20,14 +20,14 @@ namespace MovieShop.Controllers
         
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // we can have some higher level framework to create instances
 
             //var movieService = new MovieService();
             //var movieCards = movieService.GetTop30GrossingMovies();
 
-            var movieCards = _movieService.GetTop30GrossingMovies();
+            var movieCards = await _movieService.GetTop30GrossingMovies();
 
             // passing the data from controller action method to Views
             return View(movieCards);

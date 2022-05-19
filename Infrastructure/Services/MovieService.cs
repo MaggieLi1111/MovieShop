@@ -69,21 +69,19 @@ namespace Infrastructure.Services
                     Name = cast.Cast.Name,
                     Character = cast.Character,
                     ProfilePath = cast.Cast.ProfilePath,
-                };
+                });
                    
             }
             return movieDetails;
         }
+
 
         public async Task < List<MovieCardModel>>  GetTop30GrossingMovies()
         {
             // Service: only related to the implementation (Model View)
             // ApplicationCore -> Contracts -> Services -> IMovieService(interface, no body) -> Infrastructure.Services -> MovieService(model, implementation)
             // first: call MovieRepository class
-            // second: get the entity class data and map them into model class data
-
-
-            
+            // second: get the entity class data and map them into model class data          
             var movies = await _movieRepository.GetTop30GrossingMovies();  
 
             var movieCards = new List<MovieCardModel>();
@@ -99,6 +97,21 @@ namespace Infrastructure.Services
             }
             return movieCards;
            
+        }
+
+        public async Task<PagedResultSet<MovieCardModel>> GetMoviesByGenrePagination(int genreId, int pageSize = 30, int pageNumber = 1)
+        {
+            var pagedMovies = await _movieRepository.GetMoviesByGenres(genreId, pageSize, pageNumber);
+
+            var movieCards = new List<MovieCardModel>();
+
+            movieCards.AddRange(pagedMovies.Data.Select(m => new MovieCardModel
+            {
+                Id = m.Id,
+                PosterUrl = m.PosterUrl,
+                Title = m.Title,
+            }));
+            return new PagedResultSet<MovieCardModel>(movieCards, pageNumber, pageSize,pagedMovies.Count);
         }
     }
 }
