@@ -11,9 +11,9 @@ namespace ApplicationCore.Contracts.Services
     {
         // have all the business logic methods relating to Movies
         // home/index action method will call this method
-        List<MovieCardModel> GetTop30GrossingMovies();
+        Task<List<MovieCardModel>> GetTop30GrossingMovies();
 
-        
+        Task<MovieDetailsModel> GetMovieDetails(int movieId);
          
     }
 }

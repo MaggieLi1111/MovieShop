@@ -16,19 +16,19 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public List<Movie> GetTop30GrossingMovies()
+        public async Task<List<Movie>> GetTop30GrossingMovies()
         {
-            var movies = _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToList();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
             return movies;
         }
-        public override Movie GetById(int id)
+        public override async Task<Movie> GetById(int id)
         {
-            var movie = _dbContext.Movies.Include(m=> m.MoviesOfGenre).ThenInclude(m => m.Genre)
+            var movieDetails = await _dbContext.Movies.Include(m=> m.MoviesOfGenre).ThenInclude(m => m.Genre)
                 .Include(m=> m.MoviesCasts)
                 .ThenInclude(m => m.Cast)
                 .Include(m => m.Trailers)
-                .FirstOrDefault(m => m.Id == id);
-            return movie;
+                .FirstOrDefaultAsync(m => m.Id == id);
+            return movieDetails;
         }
     }
 }

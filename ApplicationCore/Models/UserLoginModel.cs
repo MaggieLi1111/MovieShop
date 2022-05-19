@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplicationCore.Contracts.Services
+namespace ApplicationCore.Models
 {
-    public interface ICastService
+    public class UserLoginModel
     {
-
-
     }
 }
